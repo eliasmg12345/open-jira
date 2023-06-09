@@ -35,9 +35,23 @@ export const EntriesProvider: FC = ({ children }) => {
 
     const [state, dispatch] = useReducer(entriesReducer, Entries_INITIAL_STATE)
 
+    const addNewEntry = (description: string) => {
+        const newEntry: Entry = {
+            _id: uuidv4(),
+            description,
+            createdAt: Date.now(),
+            status: 'pending'
+        }
+
+        dispatch({ type: '[Entry] - Add-Entry', payload: newEntry })
+    }
+
     return (
         <EntriesContext.Provider value={{
             ...state,
+
+            //methods
+            addNewEntry
         }}>
             {children}
         </EntriesContext.Provider>
