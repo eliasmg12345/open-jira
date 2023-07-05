@@ -15,6 +15,9 @@ export default function handler(
         case 'GET':
             return getEntries(res)
 
+        case 'POST':
+            return postEntry(req, res)
+
         default:
             return res.status(400).json({ message: 'EndPoint No existe' });
     }
@@ -29,4 +32,8 @@ const getEntries = async (res: NextApiResponse<Data>) => {
     await db.disconnect();
 
     res.status(200).json(entries);
+}
+
+const postEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+    return res.status(201).json({ message: 'POST' })
 }
