@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 type Data =
     | { message: string }
     | IEntry[]
+    | IEntry
 
 export default function handler(
     req: NextApiRequest,
@@ -35,5 +36,27 @@ const getEntries = async (res: NextApiResponse<Data>) => {
 }
 
 const postEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-    return res.status(201).json({ message: 'POST' })
+
+    const { description = '' } = req.body;
+
+    const newEntry = new Entry({
+        description,
+        createdAt: Date.now(),
+    });
+
+    try {
+
+        await db.connect();
+        await newEntry.save();
+        await db.disconnect();
+
+        return res.status(201).json(newEntry);
+
+    } catch (error) {
+        await db.disconnect();
+        console.log(error);
+        
+        return res.status(500).json({message: 'Algo salio mal, revisar la consola en el servidor'})
+
+    }
 }

@@ -17,15 +17,21 @@ export const EntriesProvider: FC = ({ children }) => {
 
     const [state, dispatch] = useReducer(entriesReducer, Entries_INITIAL_STATE)
 
-    const addNewEntry = (description: string) => {
+    const addNewEntry = async (description: string) => {
+
+        const { data } = await entriesApi.post<Entry>('/entries', { description });
+        dispatch({ type: '[Entry] - Add-Entry', payload: data })
+
+
+        /* sin mongo
         const newEntry: Entry = {
             _id: uuidv4(),
             description,
             createdAt: Date.now(),
             status: 'pending'
         }
-
         dispatch({ type: '[Entry] - Add-Entry', payload: newEntry })
+        */
     }
 
     const updateEntry = (entry: Entry) => {
