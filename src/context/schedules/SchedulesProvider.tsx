@@ -1,8 +1,8 @@
 import { FC, useEffect, useReducer } from 'react'
+import { SchedulesContext, schedulesReducer } from './';
 import { useSnackbar } from 'notistack';
 
 import { Schedule } from "@/interfaces";
-import { SchedulesContext, schedulesReducer } from './';
 import { schedulesApi } from '@/apis';
 
 interface Props {
@@ -50,13 +50,20 @@ export const SchedulesProvider: FC<Props> = ({ children }) => {
     }
 
     const refreshSchedules = async () => {
-        const { data } = await schedulesApi.get<Schedule[]>('/schedules')
-        dispatch({ type: '[Schedule] - Refresh-Data', payload: data })
+        try {
+            const { data } = await schedulesApi.get<Schedule[]>('/schedules');
+            dispatch({ type: '[Schedule] - Refresh-Data', payload: data })
+        } catch (error) {
+            console.log(error);
+
+        }
     }
 
     useEffect(() => {
         refreshSchedules()
     }, [])
+
+
 
     return (
         <SchedulesContext.Provider value={{

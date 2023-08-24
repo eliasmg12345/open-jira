@@ -13,7 +13,6 @@ export const NewSchedule = () => {
     const { addNewSchedule } = useContext(SchedulesContext)
     const { isAddingSchedule, setIsAddingSchedule } = useContext(UIContext)
 
-    const [isAdding, setIsAdding] = useState(false)
     const [inputValue, setInputValue] = useState('')
     const [touched, setTouched] = useState(false)
 
@@ -32,7 +31,7 @@ export const NewSchedule = () => {
 
 
     return (
-        <Box>
+        <Box sx={{ marginBottom: 2, paddingX: 2 }}>
 
             {isAddingSchedule ? (
                 <>
@@ -49,7 +48,13 @@ export const NewSchedule = () => {
                         onBlur={() => setTouched(true)}
                     />
 
-                    <Box>
+                    <Box display='flex' justifyContent='space-between'>
+                        <Button
+                            variant='text'
+                            onClick={() => setIsAddingSchedule(false)}
+                        >
+                            Cancelar
+                        </Button>
                         <Button
                             variant='outlined'
                             color='secondary'

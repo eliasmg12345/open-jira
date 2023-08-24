@@ -44,6 +44,8 @@ const postSchedule = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
         await db.connect()
         await newSchedule.save()
         await db.disconnect()
+        
+        return res.status(201).json(newSchedule);
 
     } catch (e) {
         await db.disconnect()

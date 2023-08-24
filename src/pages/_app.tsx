@@ -14,16 +14,16 @@ import { darkTheme, lightTheme } from '@/themes';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SnackbarProvider maxSnack={3}>
-      <UIProvider>
+      <SchedulesProvider>
         <EntriesProvider>
-          <SchedulesProvider>
+          <UIProvider>
             <ThemeProvider theme={darkTheme}>
               <CssBaseline />
               <Component {...pageProps} />
             </ThemeProvider>
-          </SchedulesProvider>
+          </UIProvider>
         </EntriesProvider>
-      </UIProvider>
+      </SchedulesProvider>
     </SnackbarProvider>
   )
 }

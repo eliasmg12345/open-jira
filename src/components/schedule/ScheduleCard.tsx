@@ -19,7 +19,7 @@ export const ScheduleCard: FC<Props> = ({ schedule }) => {
         startDragging()
     }
 
-    const onDragEnd = (event: DragEvent) => {
+    const onDragEnd = () => {
         endDragging()
     }
 
@@ -40,7 +40,7 @@ export const ScheduleCard: FC<Props> = ({ schedule }) => {
                     <Typography sx={{ whiteSpace: 'pre-line' }}>{schedule.description}</Typography>
                 </CardContent>
 
-                <CardActions sx={{display:'flex'}}>
+                <CardActions sx={{ display: 'flex', justifyContent: 'end', paddingRight: 2 }}>
                     <Typography variant='body2'>{dateFunctions.getFormatDistanceToNow(schedule.createdAt)}</Typography>
 
                 </CardActions>
