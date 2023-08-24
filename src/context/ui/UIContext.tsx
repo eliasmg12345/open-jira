@@ -3,6 +3,7 @@ import { createContext } from 'react';
 interface ContextProps {
      sidemenuOpen: boolean;
      isAddingEntry: boolean;
+     isAddingSchedule: boolean;
      isDragging: boolean;
 
      //methods
@@ -10,6 +11,7 @@ interface ContextProps {
      closeSideMenu: () => void
 
      setIsAddingEntry: (isAdding: boolean) => void
+     setIsAddingSchedule: (isAdding: boolean) => void
 
      endDragging: () => void
      startDragging: () => void

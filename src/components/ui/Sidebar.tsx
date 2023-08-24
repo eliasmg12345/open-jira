@@ -5,12 +5,18 @@ import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
 import { UIContext } from '@/context/ui';
+import { useRouter } from 'next/router';
 
 const menuItems: string[] = ['Inbox', 'Starred', 'Send Email', 'Drafts'];
 
 export const Sidebar = () => {
 
-    const {sidemenuOpen, closeSideMenu} = useContext(UIContext)
+    const { sidemenuOpen, closeSideMenu } = useContext(UIContext)
+    const router = useRouter()
+
+    const onClick = () => {
+        router.push(`/schedules`)
+    }
 
     return (
         <Drawer
@@ -24,6 +30,15 @@ export const Sidebar = () => {
                     <Typography variant="h4">Menu</Typography>
 
                 </Box>
+                <List>
+                    <ListItem button onClick={onClick}>
+                        <ListItemIcon>
+                            <EmailOutlinedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={'Horarios'} />
+
+                    </ListItem>
+                </List>
 
                 <List>
                     {
@@ -53,6 +68,6 @@ export const Sidebar = () => {
                 </List>
             </Box>
 
-        </Drawer>
+        </Drawer >
     )
 }

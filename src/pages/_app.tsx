@@ -7,20 +7,23 @@ import { SnackbarProvider, useSnackbar } from 'notistack';
 
 import { UIProvider } from '@/context/ui';
 import { EntriesProvider } from '@/context/entries';
+import { SchedulesProvider } from '@/context/schedules';
 
 import { darkTheme, lightTheme } from '@/themes';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SnackbarProvider maxSnack={3}>
-      <EntriesProvider>
-        <UIProvider>
-          <ThemeProvider theme={darkTheme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </UIProvider>
-      </EntriesProvider>
+      <UIProvider>
+        <EntriesProvider>
+          <SchedulesProvider>
+            <ThemeProvider theme={darkTheme}>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </SchedulesProvider>
+        </EntriesProvider>
+      </UIProvider>
     </SnackbarProvider>
   )
 }

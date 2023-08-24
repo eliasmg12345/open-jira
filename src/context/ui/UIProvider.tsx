@@ -1,19 +1,25 @@
 import { FC, useReducer } from 'react'
 import { UIContext, uiReducer } from './';
 
+interface Props {
+     children: React.ReactNode;
+}
+
 export interface UIState {
      sidemenuOpen: boolean;
      isAddingEntry: boolean;
+     isAddingSchedule: boolean;
      isDragging: boolean;
 }
 
 const UI_INITIAL_STATE: UIState = {
      sidemenuOpen: false,
      isAddingEntry: false,
+     isAddingSchedule: false,
      isDragging: false,
 }
 
-export const UIProvider: FC = ({ children }) => {
+export const UIProvider: FC<Props> = ({ children }) => {
 
      const [state, dispatch] = useReducer(uiReducer, UI_INITIAL_STATE)
 
@@ -27,6 +33,9 @@ export const UIProvider: FC = ({ children }) => {
 
      const setIsAddingEntry = (isAdding: boolean) => {
           dispatch({ type: 'UI - Set isAddingEntry', payload: isAdding })
+     }
+     const setIsAddingSchedule = (isAdding: boolean) => {
+          dispatch({ type: 'UI - Set isAddingSchedule', payload: isAdding })
      }
 
      const startDragging = () => {
@@ -45,6 +54,7 @@ export const UIProvider: FC = ({ children }) => {
                openSideMenu,
                closeSideMenu,
                setIsAddingEntry,
+               setIsAddingSchedule,
 
                endDragging,
                startDragging,

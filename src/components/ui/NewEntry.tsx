@@ -60,8 +60,7 @@ export const NewEntry = () => {
                             color='secondary'
                             endIcon={<SaveOutlinedIcon />}
                             onClick={onSave}
-                        >
-                            Guardar
+                        >Guardar
                         </Button>
                     </Box>
                 </>
@@ -72,8 +71,7 @@ export const NewEntry = () => {
                         fullWidth
                         variant='outlined'
                         onClick={() => setIsAddingEntry(true)}
-                    >
-                        Agregar Tarea
+                    >Agregar Tarea
                     </Button>
 
                 )

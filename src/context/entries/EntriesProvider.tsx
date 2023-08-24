@@ -6,6 +6,10 @@ import { Entry } from '@/interfaces';
 import { EntriesContext, entriesReducer } from './';
 import { entriesApi } from '@/apis';
 
+interface Props {
+    children: React.ReactNode;
+}
+
 export interface EntriesState {
     entries: Entry[];
 }
@@ -14,7 +18,7 @@ const Entries_INITIAL_STATE: EntriesState = {
     entries: [],
 }
 
-export const EntriesProvider: FC = ({ children }) => {
+export const EntriesProvider: FC<Props> = ({ children }) => {
 
     const [state, dispatch] = useReducer(entriesReducer, Entries_INITIAL_STATE)
     const { enqueueSnackbar } = useSnackbar();
