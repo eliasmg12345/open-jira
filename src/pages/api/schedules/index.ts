@@ -25,7 +25,7 @@ export default function handler(
 
 const getSchedules = async (res: NextApiResponse<Data>) => {
     await db.connect()
-    const schedules = await Schedule.find().sort({ createdAt: 'ascending' })
+    const schedules = await Schedule.find().sort({ createdAt: 'descending' })
     await db.disconnect()
 
     res.status(200).json(schedules)
