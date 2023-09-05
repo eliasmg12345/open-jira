@@ -29,7 +29,7 @@ export default function handler(
     }
 }
 
-const updateSchedule = async (req: NextApiRequest, res: NextApiResponse) => {
+const updateSchedule = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const { id } = req.query
 
     await db.connect()
