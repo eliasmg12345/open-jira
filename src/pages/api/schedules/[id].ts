@@ -47,7 +47,7 @@ const updateSchedule = async (req: NextApiRequest, res: NextApiResponse<Data>) =
     try {
         const updatedSchedule = await Schedule.findByIdAndUpdate(id, { description, day }, { runValidators: true, new: true })
         await db.disconnect()
-        res.status(200).json(updatedSchedule)
+        res.status(200).json(updatedSchedule!)
     } catch (error: any) {
         console.log(error);
         await db.disconnect()
